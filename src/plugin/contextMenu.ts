@@ -1,6 +1,6 @@
 import type HighlightrPlugin from "src/plugin/main";
 import { Menu } from "obsidian";
-import { HighlightrSettings } from "src/settings/settingsData";
+import { CONTEXT_MENU_PALETTE, HighlightrSettings } from "src/settings/settingsData";
 import highlighterMenu from "src/ui/highlighterMenu";
 import { EnhancedApp, EnhancedEditor } from "src/settings/types";
 
@@ -21,18 +21,17 @@ export default function contextMenu(
       .setIcon("highlightr-pen")
       .onClick(async (e) => {
         const defaultKey = settings.contextMenuDefaultHighlighter;
-        const hasDefault =
-          defaultKey &&
-          defaultKey !== "palette" &&
+        const shouldAutoApply =
+          !!defaultKey &&
+          defaultKey !== CONTEXT_MENU_PALETTE &&
           settings.highlighterOrder.includes(defaultKey);
-        if (hasDefault) {
-          // Execute the command generated for this color to reuse existing logic
-          try {
-            (app as any).commands?.executeCommandById?.(
-              `highlightr-plugin:${defaultKey}`
-            );
-          } catch (err) {
-            // Fallback to palette if command execution is unavailable
+
+        if (shouldAutoApply) {
+          const commandId = `highlightr-plugin:${defaultKey}`;
+          const execute = app.commands?.executeCommandById;
+          const executed = typeof execute === "function" ? execute(commandId) : false;
+          if (!executed) {
+            // Fallback: open palette if command execution is unavailable or failed
             highlighterMenu(app, settings, editor);
           }
         } else {

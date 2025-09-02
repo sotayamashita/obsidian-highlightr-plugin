@@ -8,7 +8,11 @@ import {
 } from "obsidian";
 import Pickr from "@simonwep/pickr";
 import Sortable from "sortablejs";
-import { HIGHLIGHTER_METHODS, HIGHLIGHTER_STYLES } from "./settingsData";
+import {
+  HIGHLIGHTER_METHODS,
+  HIGHLIGHTER_STYLES,
+  CONTEXT_MENU_PALETTE,
+} from "./settingsData";
 import { setAttributes } from "src/utils/setAttributes";
 
 export class HighlightrSettingTab extends PluginSettingTab {
@@ -95,13 +99,17 @@ export class HighlightrSettingTab extends PluginSettingTab {
         "Choose a default color to apply instantly from the context menu, or open the color palette."
       )
       .addDropdown((dropdown) => {
-        const options: Record<string, string> = { palette: "Show color palette" };
+        const options: Record<string, string> = {
+          [CONTEXT_MENU_PALETTE]: "Show color palette",
+        };
         this.plugin.settings.highlighterOrder.forEach((key) => {
           options[key] = `Auto highlight with ${key}`;
         });
         dropdown.addOptions(options);
+        const current = this.plugin.settings.contextMenuDefaultHighlighter;
+        const initialValue = options[current] ? current : CONTEXT_MENU_PALETTE;
         dropdown
-          .setValue(this.plugin.settings.contextMenuDefaultHighlighter)
+          .setValue(initialValue)
           .onChange((val) => {
             this.plugin.settings.contextMenuDefaultHighlighter = val;
             this.plugin.saveSettings();

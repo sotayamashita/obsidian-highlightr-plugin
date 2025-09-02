@@ -22,6 +22,9 @@ export interface HighlightrSettings {
   contextMenuDefaultHighlighter: string;
 }
 
+// Sentinel value for opening the palette instead of auto-applying a color
+export const CONTEXT_MENU_PALETTE = "palette" as const;
+
 const DEFAULT_SETTINGS: HighlightrSettings = {
   highlighterStyle: "none",
   highlighterMethods: "inline-styles",
@@ -37,7 +40,7 @@ const DEFAULT_SETTINGS: HighlightrSettings = {
     Grey: "#CACFD9A6",
   },
   highlighterOrder: [],
-  contextMenuDefaultHighlighter: "palette",
+  contextMenuDefaultHighlighter: CONTEXT_MENU_PALETTE,
 };
 
 DEFAULT_SETTINGS.highlighterOrder = Object.keys(DEFAULT_SETTINGS.highlighters);
