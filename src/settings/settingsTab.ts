@@ -54,9 +54,9 @@ export class HighlightrSettingTab extends PluginSettingTab {
 
     // Context menu behavior: choose palette or a default color to auto-apply
     new Setting(containerEl)
-      .setName("Context menu 'Highlight' action")
+      .setName("Choose context menu 'Highlight' action")
       .setDesc(
-        "Select a default color to apply instantly from the context menu, or open the color palette."
+        "Choose a default color to apply instantly from the context menu, or open the color palette."
       )
       .addDropdown((dropdown) => {
         const options: Record<string, string> = { palette: "Show color palette" };
