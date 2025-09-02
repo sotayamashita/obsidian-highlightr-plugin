@@ -1,84 +1,173 @@
 # Highlightr Plugin (Community Fork)
 
-This is a community-maintained fork of Chetachi’s Highlightr-Plugin
-(original: https://github.com/chetachiezikeuzor/Highlightr-Plugin).
-It brings a simple, theme-friendly highlight palette to Obsidian and
-lets you add/remove colored highlights quickly.
+> A simple, intuitive text highlighting plugin for Obsidian with a beautiful color palette.
 
-## Why This Fork
+This is a community-maintained fork of [Chetachi's Highlightr-Plugin](https://github.com/chetachiezikeuzor/Highlightr-Plugin), providing continued compatibility and improvements for modern Obsidian versions.
 
-- The original project appears inactive (last update ~3 years ago).
-- Goal: keep compatibility with current Obsidian, apply small fixes, and improve DX with minimal maintenance.
+## ✨ Features
 
-We deeply respect the original author and their work. This fork is not a
-replacement, but a lightweight maintenance effort so users can keep using the plugin today.
+- **Quick Highlighting** - Select text and highlight with your chosen color instantly
+- **Context Menu Integration** - Right-click to highlight or remove highlights
+- **Command Palette Support** - Access all highlighting functions via hotkeys
+- **Customizable Palette** - Choose your favorite colors and styles
+- **Theme-Friendly** - Works seamlessly with light and dark themes
+- **Two Modes** - Use inline CSS for portability or CSS classes for consistency
 
-## Key Features
+## 📦 Installation
 
-- Adds "Highlight / Remove" to the selection context menu
-- Opens the highlight palette via command palette or a hotkey
-- Manage colors in Settings (inline CSS or CSS class mode)
+### Manual Installation
 
-## Install / Build
+Since this fork is not yet in the community plugin store, please install manually:
 
-This fork is not distributed via the community store. Please install manually.
+1. Download the latest release from the [Releases page](https://github.com/yourusername/obsidian-highlightr-plugin/releases)
+2. Extract the files to your vault's plugins folder: `VaultFolder/.obsidian/plugins/obsidian-highlightr-plugin/`
+3. Reload Obsidian
+4. Enable the plugin in Settings → Community plugins
 
-1. Install dependencies
+### Build from Source
 
+1. Clone the repository and install dependencies:
+
+```bash
+npm i
 ```
-npm ci
-```
 
-2. Build (one-off)
+2. Build the plugin:
 
-```
+```bash
 npm run build
 ```
 
-3. Copy to your Obsidian plugins folder (example: macOS)
+3. Copy to your Obsidian plugins folder:
 
-```
-PLUGIN_DEST="$HOME/Library/Application Support/obsidian/YourVault/.obsidian/plugins/highlightr-plugin" npm run build
-```
-
-Watch build during development:
-
-```
-PLUGIN_DEST="/path/to/Vault/.obsidian/plugins/highlightr-plugin" npm run dev
+**macOS/Linux:**
+```bash
+PLUGIN_DEST="$HOME/Library/Application Support/obsidian/YourVault/.obsidian/plugins/obsidian-highlightr-plugin" npm run build
 ```
 
-Build outputs are emitted at the repo root as `main.js` and `styles.css`.
-When `PLUGIN_DEST` is set, the build also copies `manifest.json` and `styles.css` there.
+**Windows:**
+```bash
+set PLUGIN_DEST="%APPDATA%\obsidian\YourVault\.obsidian\plugins\obsidian-highlightr-plugin"
+npm run build
+```
 
-## Dev Notes (Concise)
+### Development Mode
 
-- Language: TypeScript (ESNext, target ES6, `noImplicitAny`)
-- Formatting: 2-space indent, semicolons, double quotes, no trailing commas
-- Build: Rollup (`npm run dev` watch / `npm run build` production)
-- Outputs at repo root: `main.js`, `styles.css`
-- Base-url imports: `src/...`
+For active development with hot reload:
 
-## Contributing
+```bash
+PLUGIN_DEST="/path/to/Vault/.obsidian/plugins/obsidian-highlightr-plugin" npm run dev
+```
 
-- We welcome small compatibility fixes, bug fixes, and maintenance PRs.
-- Include a summary, rationale, reproducible steps, and screenshots/GIFs for UI changes.
-- Commit style examples: `added: ...`, `fixed: ...`, `updated: ...`, `⏫ Bumped version: x.y.z`
+> **Note:** Build outputs (`main.js`, `styles.css`) are generated at the repository root. When `PLUGIN_DEST` is set, the build automatically copies all necessary files to your vault.
 
-## Donations
+## 🎨 Usage
 
-This fork does not accept donations. If you wish to support the original author,
-please use the links published on the upstream repository:
-https://github.com/chetachiezikeuzor/Highlightr-Plugin
+### Basic Highlighting
 
-If we ever accept donations for this fork, we will clearly state that funds
-support “maintenance of this fork” and that there is no affiliation with the
-original author.
+1. **Select text** you want to highlight
+2. **Right-click** and choose "Highlight" from the context menu
+3. **Pick a color** from the palette
+4. Your text is now highlighted!
 
-## Credits / License
+### Removing Highlights
 
-- Original author: Chetachi (Highlightr-Plugin)
-- License: MPL-2.0 (see `LICENSE` in this repository)
+- **Option 1:** Select highlighted text → Right-click → "Remove Highlight"
+- **Option 2:** Use the command palette: `Highlightr: Remove highlight`
 
-Short note: This is a community-maintained fork to keep Highlightr working
-with current Obsidian versions. Credits to the original author. We do not
-accept donations for this fork.
+### Keyboard Shortcuts
+
+You can set custom hotkeys for:
+- Open highlight palette
+- Remove highlight
+- Apply specific colors directly
+
+### Settings
+
+- **Highlight Method:** Choose between inline CSS (portable) or CSS classes (consistent)
+- **Color Customization:** Add, remove, or modify highlight colors
+- **Default Behavior:** Set your preferred highlighting workflow
+
+## 🛠️ Development
+
+### Tech Stack
+
+- **Language:** TypeScript (ES6+)
+- **Build Tool:** Rollup
+- **Framework:** Obsidian API
+- **Styling:** CSS with theme variables
+
+### Code Style
+
+- 2-space indentation
+- Double quotes for strings
+- Semicolons required
+- No trailing commas
+- Base imports from `src/`
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these guidelines:
+
+### Pull Request Process
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Make your changes
+4. Test thoroughly in Obsidian
+5. Commit with descriptive messages
+6. Push and create a Pull Request
+
+### Commit Message Format
+
+```
+type: description
+
+Examples:
+- added: context menu default highlighter option
+- fixed: color picker not closing on mobile
+- updated: dependencies to latest versions
+- docs: improved installation instructions
+```
+
+### What We Accept
+
+- ✅ Bug fixes
+- ✅ Performance improvements
+- ✅ Compatibility updates
+- ✅ Small feature enhancements
+- ✅ Documentation improvements
+
+### Testing
+
+Before submitting:
+1. Test on both desktop and mobile Obsidian
+2. Verify with light and dark themes
+3. Check for console errors
+4. Include screenshots/GIFs for UI changes
+
+## 💝 Support
+
+This fork does not accept donations. If you wish to support the original author, please visit the [original repository](https://github.com/chetachiezikeuzor/Highlightr-Plugin).
+
+If you find this fork helpful:
+- ⭐ Star the repository
+- 🐛 Report issues
+- 🔀 Submit pull requests
+- 📢 Share with others who might benefit
+
+## 📄 License
+
+[MPL-2.0 License](LICENSE)
+
+## 🙏 Credits
+
+- **Original Author:** [Chetachi](https://github.com/chetachiezikeuzor) - Creator of the original Highlightr-Plugin
+- **Community Contributors:** Everyone who has helped maintain and improve this fork
+
+---
+
+<div align="center">
+  <sub>This is a community-maintained fork to keep Highlightr working with current Obsidian versions.</sub><br>
+  <sub>We deeply respect and credit the original author for their excellent work.</sub>
+</div>
