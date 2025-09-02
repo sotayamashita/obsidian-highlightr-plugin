@@ -28,9 +28,18 @@ export class HighlightrSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
     containerEl.createEl("h1", { text: "Highlightr" });
-    containerEl.createEl("p", { text: "Created by " }).createEl("a", {
+    const credit1 = containerEl.createEl("p");
+    credit1.appendText("Originally created by ");
+    credit1.createEl("a", {
       text: "Chetachi 👩🏽‍💻",
       href: "https://github.com/chetachiezikeuzor",
+    });
+
+    const credit2 = containerEl.createEl("p");
+    credit2.appendText("Community-maintained fork by ");
+    credit2.createEl("a", {
+      text: "Sam Yamashita",
+      href: "https://github.com/sotayamashita",
     });
     containerEl.createEl("h2", { text: "Plugin Settings" });
 
@@ -55,8 +64,6 @@ export class HighlightrSettingTab extends PluginSettingTab {
             this.display();
           });
       });
-
-    
 
     const stylesSetting = new Setting(containerEl);
 
@@ -108,12 +115,10 @@ export class HighlightrSettingTab extends PluginSettingTab {
         dropdown.addOptions(options);
         const current = this.plugin.settings.contextMenuDefaultHighlighter;
         const initialValue = options[current] ? current : CONTEXT_MENU_PALETTE;
-        dropdown
-          .setValue(initialValue)
-          .onChange((val) => {
-            this.plugin.settings.contextMenuDefaultHighlighter = val;
-            this.plugin.saveSettings();
-          });
+        dropdown.setValue(initialValue).onChange((val) => {
+          this.plugin.settings.contextMenuDefaultHighlighter = val;
+          this.plugin.saveSettings();
+        });
       });
 
     const highlighterSetting = new Setting(containerEl);
@@ -310,7 +315,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
 
     const donateText = createEl("p");
     donateText.appendText(
-      "If you like this Plugin and are considering donating to support continued development, use the buttons below!"
+      "If you'd like to support the original author, use the buttons below."
     );
 
     hltrDonationDiv.appendChild(donateText);
