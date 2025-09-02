@@ -17,6 +17,9 @@ export interface HighlightrSettings {
   highlighterMethods: string;
   highlighters: Highlighters;
   highlighterOrder: string[];
+  // When set to a color key, context menu 'Highlight' auto-applies that color.
+  // Use value 'palette' to show the color palette instead.
+  contextMenuDefaultHighlighter: string;
 }
 
 const DEFAULT_SETTINGS: HighlightrSettings = {
@@ -34,6 +37,7 @@ const DEFAULT_SETTINGS: HighlightrSettings = {
     Grey: "#CACFD9A6",
   },
   highlighterOrder: [],
+  contextMenuDefaultHighlighter: "palette",
 };
 
 DEFAULT_SETTINGS.highlighterOrder = Object.keys(DEFAULT_SETTINGS.highlighters);

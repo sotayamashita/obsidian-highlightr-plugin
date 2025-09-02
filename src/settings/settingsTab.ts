@@ -52,6 +52,26 @@ export class HighlightrSettingTab extends PluginSettingTab {
           });
       });
 
+    // Context menu behavior: choose palette or a default color to auto-apply
+    new Setting(containerEl)
+      .setName("Context menu 'Highlight' action")
+      .setDesc(
+        "Select a default color to apply instantly from the context menu, or open the color palette."
+      )
+      .addDropdown((dropdown) => {
+        const options: Record<string, string> = { palette: "Show color palette" };
+        this.plugin.settings.highlighterOrder.forEach((key) => {
+          options[key] = `Auto highlight with ${key}`;
+        });
+        dropdown.addOptions(options);
+        dropdown
+          .setValue(this.plugin.settings.contextMenuDefaultHighlighter)
+          .onChange((val) => {
+            this.plugin.settings.contextMenuDefaultHighlighter = val;
+            this.plugin.saveSettings();
+          });
+      });
+
     const stylesSetting = new Setting(containerEl);
 
     stylesSetting

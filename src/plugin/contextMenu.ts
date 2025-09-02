@@ -20,7 +20,24 @@ export default function contextMenu(
       .setTitle("Highlight")
       .setIcon("highlightr-pen")
       .onClick(async (e) => {
-        highlighterMenu(app, settings, editor);
+        const defaultKey = settings.contextMenuDefaultHighlighter;
+        const hasDefault =
+          defaultKey &&
+          defaultKey !== "palette" &&
+          settings.highlighterOrder.includes(defaultKey);
+        if (hasDefault) {
+          // Execute the command generated for this color to reuse existing logic
+          try {
+            (app as any).commands?.executeCommandById?.(
+              `highlightr-plugin:${defaultKey}`
+            );
+          } catch (err) {
+            // Fallback to palette if command execution is unavailable
+            highlighterMenu(app, settings, editor);
+          }
+        } else {
+          highlighterMenu(app, settings, editor);
+        }
       });
   });
 
