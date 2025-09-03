@@ -16,7 +16,7 @@
     "@rollup/plugin-typescript": "^12.0.0",
     "@types/node": "^22.0.0",
     "@types/sortablejs": "^1.13.0",
-    "obsidian": "^0.16.0",
+    "obsidian": "^1.0.0",
     "rollup": "^2.32.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
