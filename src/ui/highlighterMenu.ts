@@ -17,9 +17,6 @@ const highlighterMenu = (
     let coords: Coords;
 
     const menu = new Menu() as unknown as EnhancedMenu;
-
-    // menu.setUseNativeMenu(false);
-
     const menuDom = menu.dom;
     menuDom.addClass("highlighterContainer");
 

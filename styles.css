@@ -197,50 +197,6 @@ details[open] summary.highlight-summary::before {
     opacity: 1;
   }
 }
-
-.menu.highlighterContainer {
-  min-width: 140px;
-  max-width: 225px;
-  max-height: 180px;
-  padding-left: 0em;
-  padding: 0;
-  margin: 0 auto;
-  border-radius: 6px;
-  font-size: 14px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: fixed;
-  animation: fade 300ms ease-in-out;
-  background-color: var(--background-primary);
-  box-shadow: 0px 3px 25px rgba(31, 38, 135, 0.1);
-  border: 1px solid var(--background-modifier-border);
-}
-
-.menu.highlighterContainer .menu-item .menu-item-icon {
-  display: inline-block;
-  width: 25px;
-  position: relative;
-  top: 2px;
-}
-
-.menu.highlighterContainer .menu-item {
-  display: flex;
-  padding: 2px 14px 3px 14px;
-  align-items: unset;
-  margin: auto;
-  cursor: pointer;
-  font-size: 14px;
-  height: 32px;
-  line-height: 31px;
-  white-space: nowrap;
-  border-radius: 0;
-  border-bottom: 1px solid var(--background-modifier-border);
-}
-
-.menu.highlighterContainer .menu-item:last-of-type {
-  border-bottom: none;
-}
-
 /*----------------------------------------------------------------
 SETTINGS TAB
 ----------------------------------------------------------------*/
